@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="icon" href="logo.png"> -->
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <link rel='stylesheet' href="/style.css" />
+    <title>Digital School</title>
+</head>
+
+<body onload="updatePage()">
+    <div class="page">
+        <div w3-include-html="header.html" class="header"></div>
+        <hr>
+        <h1 class="head center">Assessments</h1>
+        <div class="content">
+            <h2 class="body med center">Assessments Available:</h2>
+            <div class="options body">
+                <div class="fullform">
+                    <div class="formname med" onclick="ActivateForm(event, 'g9biocell')">Class 9 Biology Cell
+                        <i class="formnamesymbol fas fa-chevron-right g9biocellsym"></i>
+                    </div>
+                    <div class="form g9biocell"> <a href="https://www.example.com">Start Test</a></div>
+                </div>
+                <div class="fullform">
+                    <div class="formname med" onclick="ActivateForm(event, 'g9matpoly')">Class 9 Maths Polynomials
+                        <i class="formnamesymbol fas fa-chevron-right g9matpolysym"></i>
+                    </div>
+                    <div class="form g9matpoly"><a href="https://www.example.com">Start Test</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        w3.includeHTML();
+        function updatePage(){
+            document.getElementById('assess').className += " active"
+        }
+    </script>
+    <script>
+        function ActivateForm(event, identity) {
+            // If already Active then deactivate it
+            if (document.getElementsByClassName(identity)[0].style.display == 'block') {
+                // Hide the form
+                document.getElementsByClassName(identity)[0].style.display = 'none';
+                // Deactivate the form
+                event.currentTarget.className = event.currentTarget.className.replace(" active", "");
+                // Reset the Symbol
+                document.getElementsByClassName(identity + 'sym')[0].className = document.getElementsByClassName(identity + 'sym')[0].className.replace("down", "right");
+                return;
+            }
+
+
+            let symbols = document.getElementsByClassName('formnamesymbol');
+            for (let sym of symbols) {
+                // Reset All Symbols
+                sym.className = (sym.className.replace("down", "right"));
+            }
+
+
+            let formsTitle = document.getElementsByClassName('formname');
+            for (let form of formsTitle) {
+                // Deactivate All Forms (by their title)
+                form.className = form.className.replace(" active", "");
+            }
+
+            let actualFormsEmbed = document.getElementsByClassName('form');
+            for (let actualForm of actualFormsEmbed) {
+                // Hide All Forms
+                actualForm.style.display = "none";
+            }
+
+            // Activate Clicked form
+            document.getElementsByClassName(identity)[0].style.display = 'block';
+            document.getElementsByClassName(identity + 'sym')[0].className = document.getElementsByClassName(identity + 'sym')[0].className.replace('right', 'down')
+            event.currentTarget.className += " active";
+        }
+        function formatnav() {
+            let x = document.getElementById("myTopNav");
+            if (x.className === "navbar body") {
+                x.className += " responsive";
+            } else {
+                x.className = "navbar body";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

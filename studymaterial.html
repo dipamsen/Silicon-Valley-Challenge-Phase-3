@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="logo.png">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <link rel='stylesheet' href="style.css" />
+    <title>Digital School</title>
+</head>
+
+<body onload="updatePage()">
+    <div class="page">
+        <div w3-include-html="header.html" class="header" ></div>
+        <hr>
+        <h1 class="head center">Study Materials</h1>
+        <div class="drawers">
+            <button class="drawer body med" onclick="openContent(event, 'Class8')">
+                <h3>Class 8</h3>
+            </button>
+            <button class="drawer body med" onclick="openContent(event, 'Class9')">
+                <h3>Class 9</h3>
+            </button>
+            <button class="drawer body med" onclick="openContent(event, 'Class10')">
+                <h3>Class 10</h3>
+            </button>
+        </div>
+        <div class="drawercontent body small">
+            <div id="Class8" class="drawer-content">
+                <li onclick = "displayMaterial(event, 'g8', 'sci')" class="subj">Science</li>
+                <li onclick = "displayMaterial(event, 'g8', 'maths')" class="subj">Maths</li>
+                <li onclick = "displayMaterial(event, 'g8', 'ssc')" class="subj">Social Science</li>
+            </div>
+            <div id="Class9" class="drawer-content">
+                <li onclick = "displayMaterial(event, 'g9', 'maths')" class="subj">Maths</li>
+                <li onclick = "displayMaterial(event, 'g9', 'sci')" class="subj">Science</li>
+                
+                <li onclick = "displayMaterial(event, 'g9', 'ssc')" class="subj">Social Science</li>
+                <li onclick = "displayMaterial(event, 'g9', 'comp')" class="subj">Computer Science</li>
+            </div>
+            <div id="Class10" class="drawer-content">
+                <li onclick = "displayMaterial(event, 'g10', 'sci')" class="subj">Chemistry</li>
+            </div>
+        </div><br>
+        
+    </div>
+        <div class = "resources body" w3-include-html="studyresourcelinks.html"></div></div>
+    </div>
+    <script>
+        w3.includeHTML();
+        const updatePage = ()=>{
+            document.getElementById("study").className += " active";
+        }
+    </script>
+    <script>
+        function openContent(event, className){
+            let tabcontent, tablinks
+            tabcontent = document.getElementsByClassName("drawer-content");
+            for (let content of tabcontent){
+                content.style.display = "none"
+            }
+            tablinks = document.getElementsByClassName("drawer");
+            for (let link of tablinks){
+                link.className = link.className.replace(" active", "");
+            }
+            document.getElementById(className).style.display = "flex";
+            event.currentTarget.className += " active";
+        }
+        function displayMaterial(event, grade, sub){
+            let subs, classes, resources;
+            // let tabcontent, tablinks
+            subs = document.getElementsByClassName("subj");
+            resources = document.getElementsByClassName("resource");
+            for (let rec of resources){
+                rec.style.display = "none"
+            }
+            for (let sub of subs){
+                sub.className =  sub.className.replace(" active", "");
+            }
+            document.getElementsByClassName('resource '+grade+' '+sub.toLowerCase())[0].style.display = "flex";
+            event.currentTarget.className += " active";
+            let subCode;
+            if(sub=='maths') subCode = 'Maths'
+            if(sub=='ssc') subCode = 'Social Science'
+            if(sub=='sci') subCode = 'Science'
+            if(sub=='comp') subCode = 'Computers'
+            document.getElementsByClassName('vartext')[0].innerHTML = 'Class '+grade[1]+' '+subCode;
+            if(grade[2])
+            document.getElementsByClassName('vartext')[0].innerHTML = 'Class '+grade[1]+grade[2]+' '+subCode;
+            document.getElementsByClassName('links')[0].style.borderTop="1px solid black"
+        }
+        function formatnav() {
+            let x = document.getElementById("myTopNav");
+            if (x.className === "navbar body") {
+                x.className += " responsive";
+            } else {
+                x.className = "navbar body";
+            }
+        }
+    </script>
+</body>
+
+</html>

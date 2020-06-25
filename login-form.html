@@ -1,0 +1,33 @@
+<style>
+    body {
+        background-color: aquamarine;
+        background: url('https://image.freepik.com/free-photo/book-with-green-board-background_1150-3837.jpg');
+        background-repeat: repeat;
+        background-size: cover;
+        /* font-size: x-large; */
+        margin: 0;
+    }
+</style>
+<link rel='stylesheet' href="style.css" />
+<form action="main.html">
+    <div w3-include-html="logo.html"></div>
+    <p class="head">Login
+        <hr>
+    </p>
+    <div class="input body">
+        <i class='fas fa-user'></i>
+        <input class="body" id="name" name="name" type="text" placeholder="Name"></div><br>
+    <div class="input body">
+        <i class="fas fa-key"></i>
+        <input class="body" id="pw" name="pw" type="password" placeholder="Password"></div><br>
+
+    <a class="body small" href="about.html">About this site</a><br><br>
+
+    <button class="body login">
+        Login
+    </button>
+</form>
+<script>
+    w3.includeHTML();
+</script>
+
